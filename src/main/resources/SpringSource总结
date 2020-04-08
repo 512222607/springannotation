@@ -1,0 +1,10 @@
+Spring容器的refresh()方法[创建刷新容器];
+1、prepareRefresh()刷新前的预处理工作：
+    1）、initPropertySources()初始化一些属性设置，里面是空实现。留给子类自定义一些个性化的属性设置方法。
+    2）、getEnvironment().validateRequiredProperties();校验属性的合法性等
+    3）、this.earlyApplicationEvents = new LinkedHashSet<>();保存容器中的一些早期的事件（事件派发起初始化好了会把这些事件都派发出去）。
+2、ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();获取beanFactory
+    1）、refreshBeanFactory();刷新beanFactory,
+           创建了一个this.beanFactory = new DefaultListableBeanFactory();创建beanFactory对象，并且设置一个id。
+    2）、getBeanFactory();返回刚才GenericApplicationContext创建的BeanFactory对象。
+    3）、将创建的BeanFactory【DefaultListableBeanFactory】返回
